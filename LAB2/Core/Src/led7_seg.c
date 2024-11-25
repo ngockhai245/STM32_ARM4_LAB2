@@ -5,8 +5,8 @@
  *      Author: LENOVO
  */
 
-
 #include "led7_seg.h"
+#include "spi.h"
 
 uint8_t led7seg[4] = {0, 1, 2, 3}; //4 index
 uint8_t arrayOfNum[10] = {0x03, 0x9f, 0x25, 0x0d, 0x99, 0x49, 0x41, 0x1f, 0x01, 0x09};// 9 numbers
@@ -51,7 +51,7 @@ void led7_Scan(){
 	default:
 		break;
 	}
-	led7_index = (led7_index + 1)%4;
+	led7_index = (led7_index + 1) % 4;
 	HAL_GPIO_WritePin(LD_LATCH_GPIO_Port, LD_LATCH_Pin, 0);
 	HAL_SPI_Transmit(&hspi1, (void*)&spi_buffer, 2, 1);
 	HAL_GPIO_WritePin(LD_LATCH_GPIO_Port, LD_LATCH_Pin, 1);
@@ -60,7 +60,7 @@ void led7_Scan(){
 /**
   * @brief  Display a digit at a position of led 7-segment
   * @param  num	Number displayed
-  * @param  pos	The position displayed (index from 0)
+  * @param  position The position displayed (index from 0)
   * @param  show_dot Show dot in the led or not
   * @retval None
   */
