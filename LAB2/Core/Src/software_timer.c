@@ -11,7 +11,7 @@
 #define TIMER_CYCLE_2 1
 
 // software timer variable
-uint16_t flag_timer2 = 0;
+int flag_timer2 = 0;
 uint16_t timer2_counter = 0;
 uint16_t timer2_MUL = 0;
 
@@ -65,7 +65,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 		if (timer2_counter > 0){
 			timer2_counter--;
 			if (timer2_counter == 0){
-				flag_timer2 == 1;
+				flag_timer2 = 1;
 			}
 		}
 		// 1ms interrupt here

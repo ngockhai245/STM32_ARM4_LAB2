@@ -11,7 +11,7 @@
 #include "tim.h"
 #include "software_timer.h"
 
-extern uint16_t flag_timer2;
+extern int flag_timer2;
 
 //extern int debug_led_flag;
 //extern int led_y0_flag;
