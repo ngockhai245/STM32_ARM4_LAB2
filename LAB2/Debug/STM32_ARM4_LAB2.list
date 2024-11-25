@@ -648,16 +648,16 @@ int main(void)
  800068e:	d010      	beq.n	80006b2 <main+0x56>
  8000690:	e022      	b.n	80006d8 <main+0x7c>
 	  case DEBUG_LED_ON:
-		  HAL_GPIO_WritePin(DEBUG_LED_GPIO_Port, DEBUG_LED_Pin, 1);
- 8000692:	2201      	movs	r2, #1
+		  HAL_GPIO_WritePin(DEBUG_LED_GPIO_Port, DEBUG_LED_Pin, 0);
+ 8000692:	2200      	movs	r2, #0
  8000694:	2110      	movs	r1, #16
  8000696:	483a      	ldr	r0, [pc, #232]	; (8000780 <main+0x124>)
  8000698:	f000 fe60 	bl	800135c <HAL_GPIO_WritePin>
-		  if (!debug_led_flag){
+		  if (debug_led_flag){
  800069c:	4b39      	ldr	r3, [pc, #228]	; (8000784 <main+0x128>)
  800069e:	681b      	ldr	r3, [r3, #0]
  80006a0:	2b00      	cmp	r3, #0
- 80006a2:	d116      	bne.n	80006d2 <main+0x76>
+ 80006a2:	d016      	beq.n	80006d2 <main+0x76>
 			  setTimer_debug_led(2000);
  80006a4:	f44f 60fa 	mov.w	r0, #2000	; 0x7d0
  80006a8:	f000 f910 	bl	80008cc <setTimer_debug_led>
@@ -668,16 +668,16 @@ int main(void)
 		  break;
  80006b0:	e00f      	b.n	80006d2 <main+0x76>
 	  case DEBUG_LED_OFF:
-		  HAL_GPIO_WritePin(DEBUG_LED_GPIO_Port, DEBUG_LED_Pin, 0);
- 80006b2:	2200      	movs	r2, #0
+		  HAL_GPIO_WritePin(DEBUG_LED_GPIO_Port, DEBUG_LED_Pin, 1);
+ 80006b2:	2201      	movs	r2, #1
  80006b4:	2110      	movs	r1, #16
  80006b6:	4832      	ldr	r0, [pc, #200]	; (8000780 <main+0x124>)
  80006b8:	f000 fe50 	bl	800135c <HAL_GPIO_WritePin>
-		  if (!debug_led_flag){
+		  if (debug_led_flag){
  80006bc:	4b31      	ldr	r3, [pc, #196]	; (8000784 <main+0x128>)
  80006be:	681b      	ldr	r3, [r3, #0]
  80006c0:	2b00      	cmp	r3, #0
- 80006c2:	d108      	bne.n	80006d6 <main+0x7a>
+ 80006c2:	d008      	beq.n	80006d6 <main+0x7a>
 			  setTimer_debug_led(2000);
  80006c4:	f44f 60fa 	mov.w	r0, #2000	; 0x7d0
  80006c8:	f000 f900 	bl	80008cc <setTimer_debug_led>
@@ -702,16 +702,16 @@ int main(void)
  80006e0:	d010      	beq.n	8000704 <main+0xa8>
  80006e2:	e022      	b.n	800072a <main+0xce>
 	  case LED_Y0_ON:
-		  HAL_GPIO_WritePin(OUTPUT_Y0_GPIO_Port, OUTPUT_Y0_Pin, 1);
- 80006e4:	2201      	movs	r2, #1
+		  HAL_GPIO_WritePin(OUTPUT_Y0_GPIO_Port, OUTPUT_Y0_Pin, 0);
+ 80006e4:	2200      	movs	r2, #0
  80006e6:	2120      	movs	r1, #32
  80006e8:	4825      	ldr	r0, [pc, #148]	; (8000780 <main+0x124>)
  80006ea:	f000 fe37 	bl	800135c <HAL_GPIO_WritePin>
-		  if (!led_y0_flag){
+		  if (led_y0_flag){
  80006ee:	4b26      	ldr	r3, [pc, #152]	; (8000788 <main+0x12c>)
  80006f0:	681b      	ldr	r3, [r3, #0]
  80006f2:	2b00      	cmp	r3, #0
- 80006f4:	d116      	bne.n	8000724 <main+0xc8>
+ 80006f4:	d016      	beq.n	8000724 <main+0xc8>
 			  setTimer_led_y0(2000);
  80006f6:	f44f 60fa 	mov.w	r0, #2000	; 0x7d0
  80006fa:	f000 f903 	bl	8000904 <setTimer_led_y0>
@@ -722,16 +722,16 @@ int main(void)
 		  break;
  8000702:	e00f      	b.n	8000724 <main+0xc8>
 	  case LED_Y0_OFF:
-		  HAL_GPIO_WritePin(OUTPUT_Y0_GPIO_Port, OUTPUT_Y0_Pin, 0);
- 8000704:	2200      	movs	r2, #0
+		  HAL_GPIO_WritePin(OUTPUT_Y0_GPIO_Port, OUTPUT_Y0_Pin, 1);
+ 8000704:	2201      	movs	r2, #1
  8000706:	2120      	movs	r1, #32
  8000708:	481d      	ldr	r0, [pc, #116]	; (8000780 <main+0x124>)
  800070a:	f000 fe27 	bl	800135c <HAL_GPIO_WritePin>
-		  if (!led_y0_flag){
+		  if (led_y0_flag){
  800070e:	4b1e      	ldr	r3, [pc, #120]	; (8000788 <main+0x12c>)
  8000710:	681b      	ldr	r3, [r3, #0]
  8000712:	2b00      	cmp	r3, #0
- 8000714:	d108      	bne.n	8000728 <main+0xcc>
+ 8000714:	d008      	beq.n	8000728 <main+0xcc>
 			  setTimer_led_y0(4000);
  8000716:	f44f 607a 	mov.w	r0, #4000	; 0xfa0
  800071a:	f000 f8f3 	bl	8000904 <setTimer_led_y0>
@@ -756,16 +756,16 @@ int main(void)
  8000732:	d010      	beq.n	8000756 <main+0xfa>
  8000734:	e022      	b.n	800077c <main+0x120>
 	  case LED_Y1_ON:
-		  HAL_GPIO_WritePin(OUTPUT_Y1_GPIO_Port, OUTPUT_Y1_Pin, 1);
- 8000736:	2201      	movs	r2, #1
+		  HAL_GPIO_WritePin(OUTPUT_Y1_GPIO_Port, OUTPUT_Y1_Pin, 0);
+ 8000736:	2200      	movs	r2, #0
  8000738:	2140      	movs	r1, #64	; 0x40
  800073a:	4811      	ldr	r0, [pc, #68]	; (8000780 <main+0x124>)
  800073c:	f000 fe0e 	bl	800135c <HAL_GPIO_WritePin>
-		  if (!led_y1_flag){
+		  if (led_y1_flag){
  8000740:	4b12      	ldr	r3, [pc, #72]	; (800078c <main+0x130>)
  8000742:	681b      	ldr	r3, [r3, #0]
  8000744:	2b00      	cmp	r3, #0
- 8000746:	d116      	bne.n	8000776 <main+0x11a>
+ 8000746:	d016      	beq.n	8000776 <main+0x11a>
 			  setTimer_led_y1(5000);
  8000748:	f241 3088 	movw	r0, #5000	; 0x1388
  800074c:	f000 f8f6 	bl	800093c <setTimer_led_y1>
@@ -776,16 +776,16 @@ int main(void)
 		  break;
  8000754:	e00f      	b.n	8000776 <main+0x11a>
 	  case LED_Y1_OFF:
-		  HAL_GPIO_WritePin(OUTPUT_Y1_GPIO_Port, OUTPUT_Y1_Pin, 0);
- 8000756:	2200      	movs	r2, #0
+		  HAL_GPIO_WritePin(OUTPUT_Y1_GPIO_Port, OUTPUT_Y1_Pin, 1);
+ 8000756:	2201      	movs	r2, #1
  8000758:	2140      	movs	r1, #64	; 0x40
  800075a:	4809      	ldr	r0, [pc, #36]	; (8000780 <main+0x124>)
  800075c:	f000 fdfe 	bl	800135c <HAL_GPIO_WritePin>
-		  if (!led_y1_flag){
+		  if (led_y1_flag){
  8000760:	4b0a      	ldr	r3, [pc, #40]	; (800078c <main+0x130>)
  8000762:	681b      	ldr	r3, [r3, #0]
  8000764:	2b00      	cmp	r3, #0
- 8000766:	d108      	bne.n	800077a <main+0x11e>
+ 8000766:	d008      	beq.n	800077a <main+0x11e>
 			  setTimer_led_y1(1000);
  8000768:	f44f 707a 	mov.w	r0, #1000	; 0x3e8
  800076c:	f000 f8e6 	bl	800093c <setTimer_led_y1>
