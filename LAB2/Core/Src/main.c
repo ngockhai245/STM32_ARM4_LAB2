@@ -55,38 +55,15 @@ TIM_HandleTypeDef htim2;
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
-//static void MX_GPIO_Init(void);
-//static void MX_TIM2_Init(void);
-//static void MX_SPI1_Init(void);
+
 /* USER CODE BEGIN PFP */
 void system_init();
-//void test_LedDebug();
-//void test_LedY0();
-//void test_LedY1();
-//void test_7seg();
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-//enum debug_led_state{
-//	DEBUG_LED_ON,
-//	DEBUG_LED_OFF
-//};
-//
-//enum led_y0_state{
-//	LED_Y0_ON,
-//	LED_Y0_OFF
-//};
-//
-//enum led_y1_state{
-//	LED_Y1_ON,
-//	LED_Y1_OFF
-//};
-enum traffic_light_state{
-	GREEN_LIGHT,
-	RED_LIGHT,
-	YELLOW_LIGHT
-};
+
 /* USER CODE END 0 */
 
 /**
@@ -121,10 +98,7 @@ int main(void)
   MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
   system_init();
-//  enum debug_led_state debug_led_current_state = DEBUG_LED_ON;
-//  enum led_y0_state led_y0_current_state = LED_Y0_ON;
-//  enum led_y1_state led_y1_current_state = LED_Y1_ON;
-  enum traffic_light_state current_state = RED_LIGHT;
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -133,31 +107,12 @@ int main(void)
 
   while (1)
   {
-	  HAL_GPIO_WritePin(DEBUG_LED_GPIO_Port, DEBUG_LED_Pin, 0);
-	  HAL_GPIO_WritePin(OUTPUT_Y0_GPIO_Port, OUTPUT_Y0_Pin, 0);
-	  HAL_GPIO_WritePin(OUTPUT_Y1_GPIO_Port, OUTPUT_Y1_Pin, 0);
-	  switch (current_state){
-	  case RED_LIGHT:
-		  HAL_GPIO_WritePin(DEBUG_LED_GPIO_Port, DEBUG_LED_Pin, 1);
-		  if (flag_timer2){
-			  setTimer2(3000);
-			  current_state = GREEN_LIGHT;
-		  }
-		  break;
-	  case GREEN_LIGHT:
-		  HAL_GPIO_WritePin(OUTPUT_Y0_GPIO_Port, OUTPUT_Y0_Pin, 1);
-		  if (flag_timer2){
-			  setTimer2(1000);
-			  current_state = YELLOW_LIGHT;
-		  }
-		  break;
-	  case YELLOW_LIGHT:
-		  HAL_GPIO_WritePin(OUTPUT_Y1_GPIO_Port, OUTPUT_Y1_Pin, 1);
-		  if (flag_timer2){
-			  setTimer2(5000);
-			  current_state = RED_LIGHT;
-		  }
-		  break;
+	  displayTime();
+	  if (colon_flag){
+		  updateColon();
+	  }
+	  if (time_update_flag){
+		  updateTime();
 	  }
 
 
@@ -221,8 +176,7 @@ void system_init(){
 	  HAL_GPIO_WritePin(OUTPUT_Y0_GPIO_Port, OUTPUT_Y0_Pin, 0);
 	  HAL_GPIO_WritePin(OUTPUT_Y1_GPIO_Port, OUTPUT_Y1_Pin, 0);
 	  timer_init();
-	  setTimer2(5000);
-	  led7_init();
+
 }
 /* USER CODE END 4 */
 

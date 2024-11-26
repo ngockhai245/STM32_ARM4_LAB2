@@ -11,18 +11,22 @@
 #include "tim.h"
 #include "software_timer.h"
 
-extern int flag_timer2;
+#define TIMER_CYCLE_2 1
+#define COLON_BLINK_COUNTER 250
+#define TIME_UPDATE_COUNTER 60000
 
-//extern int debug_led_flag;
-//extern int led_y0_flag;
-//extern int led_y1_flag;
+extern int colon_flag;
+extern int time_update_flag;
+
+
 
 void timer_init();
+void setTimer_colon(uint16_t duration);
+void setTimer_time_update(uint16_t duration);
+void displayTime();
+void updateColon();
+void updateTime();
 
-void setTimer2(uint16_t duration);
 
-//void setTimer_debug_led(uint16_t duration);
-//void setTimer_led_y0(uint16_t duration);
-//void setTimer_led_y1(uint16_t duration);
 
 #endif /* INC_SOFTWARE_TIMER_H_ */
