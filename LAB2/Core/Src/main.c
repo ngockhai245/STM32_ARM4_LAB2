@@ -160,56 +160,7 @@ int main(void)
 		  break;
 	  }
 
-//	  switch (debug_led_current_state){
-//	  case DEBUG_LED_ON:
-//		  HAL_GPIO_WritePin(DEBUG_LED_GPIO_Port, DEBUG_LED_Pin, 0);
-//		  if (debug_led_flag){
-//			  setTimer_debug_led(2000);
-//			  debug_led_current_state = DEBUG_LED_OFF;
-//		  }
-//		  break;
-//	  case DEBUG_LED_OFF:
-//		  HAL_GPIO_WritePin(DEBUG_LED_GPIO_Port, DEBUG_LED_Pin, 1);
-//		  if (debug_led_flag){
-//			  setTimer_debug_led(2000);
-//			  debug_led_current_state = DEBUG_LED_ON;
-//		  }
-//		  break;
-//	  }
-//
-//	  switch (led_y0_current_state){
-//	  case LED_Y0_ON:
-//		  HAL_GPIO_WritePin(OUTPUT_Y0_GPIO_Port, OUTPUT_Y0_Pin, 0);
-//		  if (led_y0_flag){
-//			  setTimer_led_y0(2000);
-//			  led_y0_current_state = LED_Y0_OFF;
-//		  }
-//		  break;
-//	  case LED_Y0_OFF:
-//		  HAL_GPIO_WritePin(OUTPUT_Y0_GPIO_Port, OUTPUT_Y0_Pin, 1);
-//		  if (led_y0_flag){
-//			  setTimer_led_y0(4000);
-//			  led_y0_current_state = LED_Y0_ON;
-//		  }
-//		  break;
-//	  }
-//
-//	  switch (led_y1_current_state){
-//	  case LED_Y1_ON:
-//		  HAL_GPIO_WritePin(OUTPUT_Y1_GPIO_Port, OUTPUT_Y1_Pin, 0);
-//		  if (led_y1_flag){
-//			  setTimer_led_y1(5000);
-//			  led_y1_current_state = LED_Y1_OFF;
-//		  }
-//		  break;
-//	  case LED_Y1_OFF:
-//		  HAL_GPIO_WritePin(OUTPUT_Y1_GPIO_Port, OUTPUT_Y1_Pin, 1);
-//		  if (led_y1_flag){
-//			  setTimer_led_y1(1000);
-//			  led_y1_current_state = LED_Y0_ON;
-//		  }
-//		  break;
-//	  }
+
 
     /* USER CODE END WHILE */
 
@@ -271,9 +222,7 @@ void system_init(){
 	  HAL_GPIO_WritePin(OUTPUT_Y1_GPIO_Port, OUTPUT_Y1_Pin, 0);
 	  timer_init();
 	  setTimer2(5000);
-//	  setTimer_debug_led(2000);
-//	  setTimer_led_y0(2000);
-//	  setTimer_led_y1(5000);
+	  led7_init();
 }
 /* USER CODE END 4 */
 

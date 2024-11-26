@@ -9,22 +9,19 @@
 #include "led7_seg.h"
 
 #define TIMER_CYCLE_2 1
+#define COUNTER_SCAN_1HZ 500
+#define COUNTER_SCAN_25HZ 20
+#define COUNTER_SCAN_100HZ 5
+
+int counter_scan = COUNTER_SCAN_25HZ;
+
 
 // software timer variable
 int flag_timer2 = 0;
-uint16_t timer2_counter = 0;
-uint16_t timer2_MUL = 0;
+int timer2_counter = 0;
+int timer2_MUL = 0;
 
-// debug led, led y0, led y1
-//int debug_led_flag = 0;
-//int led_y0_flag = 0;
-//int led_y1_flag = 0;
-//
-//int debug_led_counter = 0;
-//int led_y0_counter = 0;
-//int led_y1_counter = 0;
 
-//uint16_t timer_MUL = 0;
 
 // init timer interrupt
 void timer_init(){
@@ -42,23 +39,7 @@ void setTimer2(uint16_t duration){
 	flag_timer2 = 0;
 }
 
-//void setTimer_debug_led(uint16_t duration){
-//	timer_MUL = duration/TIMER_CYCLE_2;
-//	debug_led_counter = timer_MUL;
-//	debug_led_flag = 0;
-//}
-//
-//void setTimer_led_y0(uint16_t duration){
-//	timer_MUL = duration/TIMER_CYCLE_2;
-//	led_y0_counter = timer_MUL;
-//	led_y0_flag = 0;
-//}
-//
-//void setTimer_led_y1(uint16_t duration){
-//	timer_MUL = duration/TIMER_CYCLE_2;
-//	led_y1_counter = timer_MUL;
-//	led_y1_flag = 0;
-//}
+
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 	if (htim->Instance == TIM2){
@@ -69,29 +50,15 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 			}
 		}
 		// 1ms interrupt here
-//		led7_Scan();
+		// led7_Scan();
+		if (counter_scan > 0){
+			counter_scan--;
+			if (counter_scan == 0){
+				led7_Scan();
+				counter_scan = COUNTER_SCAN_25HZ;
+			}
+		}
 	}
 }
 
-//void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
-//	if (htim->Instance == TIM2){
-//		if (debug_led_counter > 0){
-//			debug_led_counter--;
-//			if (debug_led_counter == 0){
-//				debug_led_flag = 1;
-//			}
-//		}
-//		if (led_y0_counter > 0){
-//			led_y0_counter--;
-//			if (led_y0_counter == 0){
-//				led_y0_flag = 1;
-//			}
-//		}
-//		if (led_y1_counter > 0){
-//			led_y1_counter--;
-//			if (led_y1_counter == 0){
-//				led_y1_flag = 1;
-//			}
-//		}
-//	}
-//}
+
