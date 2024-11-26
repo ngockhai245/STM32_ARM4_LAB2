@@ -12,20 +12,16 @@
 #include "software_timer.h"
 
 #define TIMER_CYCLE_2 1
-#define COLON_BLINK_COUNTER 250
-#define TIME_UPDATE_COUNTER 60000
+#define SHIFT_RIGHT_DELAY 1000
 
-extern int colon_flag;
-extern int time_update_flag;
-
+extern int timer2_flag;
+extern int shift_right_counter;
 
 
 void timer_init();
-void setTimer_colon(uint16_t duration);
-void setTimer_time_update(uint16_t duration);
-void displayTime();
-void updateColon();
-void updateTime();
+void setTimer2(uint16_t duration);
+void shiftRightDigits();
+void display_shiftRightDigits();
 
 
 

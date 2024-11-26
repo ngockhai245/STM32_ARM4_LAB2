@@ -107,15 +107,11 @@ int main(void)
 
   while (1)
   {
-	  displayTime();
-	  if (colon_flag){
-		  updateColon();
+	  display_shiftRightDigits();
+	  if (timer2_flag){
+		  shiftRightDigits();
+		  setTimer2(SHIFT_RIGHT_DELAY);
 	  }
-	  if (time_update_flag){
-		  updateTime();
-	  }
-
-
 
     /* USER CODE END WHILE */
 
